@@ -10,6 +10,7 @@ const character = require("./app/controllers/character")
 
 const app = express();
 
+const port = 3000;
 
 app.engine('.hbs', exphbs({
 	"defaultLayout": "main",
@@ -28,4 +29,4 @@ app.get('/new-game', game.new);
 app.get('/create-character', character.create);
 
 console.log("Server started")
-app.listen(3000)
+app.listen(port)
