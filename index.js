@@ -8,6 +8,7 @@ const main = require("./app/controllers/main")
 const game = require("./app/controllers/game")
 const character = require("./app/controllers/character")
 
+
 const app = express();
 
 const port = 3000;
@@ -27,6 +28,10 @@ app.use(bodyParser.json());
 app.get('/', main.home);
 app.get('/new-game', game.new);
 app.get('/create-character', character.create);
+
+app.post('/create-character/name', character.create_name);
+
+
 
 console.log("Server started")
 app.listen(port)

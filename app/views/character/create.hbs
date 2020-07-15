@@ -1,6 +1,9 @@
+<input type="hidden" value="{{character_id}}" id="character_id">
+
 <div style="float:left"> 
 	Имя персонажа
-	<br/>
+	<br/><input id="character_name">
+	<button id="button_character_name">OK</button>
 	<br/>Сила
 	<br/>Ловкость
 	<br/>Телосложение
@@ -13,6 +16,12 @@
 <div style="float:left"> 
 	Класс и Уровень
 	<br/>Раса
+	<br/><select id="character_race">
+		<option disabled>Выбор расы </option>
+		<option value="varvar">Варвар</option>
+	</select>
+	<button id="button_character_race_ok">OK</button>
+	<a href id="character_race_about">Инфомация о расе</a>
 	<br/>Вдохновение
 	<br/>Бонус Мастерства
 	<ul>Спасброски
@@ -63,3 +72,33 @@
 	<br/>Слабости
 	<br/>Умения и Особенности
 </div>
+<script>
+	$('#button_character_name').on('click', function() {
+		var character_name = $('#character_name').val();
+		var character_id = $('#character_id').val();
+		
+		$.post('/create-character/name', {
+			name: character_name,
+			id: character_id
+		}, function(data){
+			alert(data);
+		})
+	});
+
+	$('#button_character_race_ok').on('click', function() {
+		var character_race = $('#character_race').val();
+		var character_id = $('#character_id').val();
+		$.post('/create-character/race', {
+		name: character_race
+		}, function(data){
+			alert(data);
+		})
+	});
+	
+	$('#character_race_about').on('change', function() {
+		var character_race = $('#character_race').val();
+		alert(character_race);
+	});
+	
+	
+</script>
