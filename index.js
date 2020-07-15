@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 app.get('/', main.home);
 app.get('/new-game', game.new);
 app.get('/create-character', character.create);
-app.get('/dices', character.dices);
+app.get('/create-character-dicesForCharacteristics', character.dicesForCharacteristics);
 
 console.log("Server started");
 app.listen(port);
