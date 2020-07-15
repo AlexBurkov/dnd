@@ -8,6 +8,7 @@ const main = require("./app/controllers/main")
 const game = require("./app/controllers/game")
 const character = require("./app/controllers/character")
 
+
 const app = express();
 
 const port = 3000;
@@ -28,6 +29,9 @@ app.get('/', main.home);
 app.get('/new-game', game.new);
 app.get('/create-character', character.create);
 app.get('/create-character-dicesForCharacteristics', character.dicesForCharacteristics);
+
+app.post('/create-character/name', character.create_name);
+app.post('/create-character/race', character.create_race);
 
 console.log("Server started");
 app.listen(port);
