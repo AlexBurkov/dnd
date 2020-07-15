@@ -30,7 +30,7 @@ app.get('/new-game', game.new);
 app.get('/create-character', character.create);
 
 app.post('/create-character/name', character.create_name);
-
+app.post('/create-character/race', character.create_race);
 
 
 console.log("Server started")
