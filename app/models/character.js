@@ -24,3 +24,11 @@ exports.insert_null = function(callback){
 exports.select_all = function(callback){	
 	db.all("select id, name, race from characters", [], callback);
 }
+
+exports.selectById = function(id, callback){	
+	db.get("select id, name, race from characters where id = ?", [id], callback);
+}
+
+exports.deleteById = function(id, callback){
+	db.run("delete from characters where id = ?", [id], callback);
+}

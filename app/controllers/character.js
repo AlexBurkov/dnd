@@ -62,3 +62,27 @@ exports.create_race = function(request, response){
 		console.log(`UPDATE`);
 	});
 };
+
+exports.index = function(request, response){
+	character.select_all(function(err, rows){
+		response.render("character/index", { "characters": rows });
+	});
+}
+
+exports.look = function(request, response){
+	var id = request.params.id;
+	character.selectById(id, function(err, row){
+		response.render("character/look", {"character": row});
+	});
+}
+//--------------------------------------------------------------------------------------------------------------------------
+exports.edit = function(request, response){
+	console.log("edit");
+}
+//--------------------------------------------------------------------------------------------------------------------------
+exports.delete = function(request, response){
+	var id = request.params.id;
+	character.deleteById(id, function(err, row){
+		response.redirect("/index");
+	});
+}
