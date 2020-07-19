@@ -1,10 +1,19 @@
 const fs = require("fs");
 exports.newCampany = function(request, response){
-	var campany = JSON.parse(fs.readFileSync("app/campanies/dungeon_of_the_black_castle.json", 'utf8'));
+	var nameFile = "app/campanies/" + request.params.name + ".json";
+	
+	var campany = JSON.parse(fs.readFileSync(nameFile, 'utf8'));
 	var id = request.params.id;
+	var ans;
 	campany.forEach((location) => {
-		if(location.id = id){
-			response.render("game/location", {"location": location});
+		if(location.id == id){
+			ans = location;
+			//break;
+			// тут разобраться
 		}
+	});
+	response.render("game/location", {
+		"location": ans,
+		"name": request.params.name
 	});
 };
