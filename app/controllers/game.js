@@ -17,3 +17,7 @@ exports.newCampany = function(request, response){
 		"name": request.params.name
 	});
 };
+
+exports.showCampanies = function(request, response){
+	response.render("game/campanies");
+}
