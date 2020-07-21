@@ -1,10 +1,10 @@
 <form method="POST">
 
-	<input type="hidden" value="{{character_id}}" id="character_id" />
+	<input type="hidden" value="{{characterId}}" id="characterId" />
 
 	<div style="float:left"> 
 		Имя персонажа
-		<br/><input id="character_name" name="character_name" value="{{character.name}}" />
+		<br/><input id="characterName" name="characterName" value="{{character.name}}" />
 		<br/>Сила
 		<br/>Ловкость
 		<br/>Телосложение
@@ -16,12 +16,36 @@
 	</div>
 	<div style="float:left"> 
 		Класс и Уровень
-		<br/>Раса
-		<br/><select id="character_race" name=character_race>
-			<option disabled>Выбор расы </option>
-			<option value="varvar">Варвар</option>
+		<br/><select id="characterClasses" name=characterClasses>
+			<option disabled>Выбор класса </option>
+			<option value="barbarian">Варвар</option>
+			<option value="bard">Бард</option>
+			<option value="cleric">Жрец</option>
+			<option value="druid">Друид</option>
+			<option value="fighter">Воин</option>
+			<option value="monk">Монах</option>
+			<option value="paladin">Паладин</option>
+			<option value="ranger">Следопыт</option>
+			<option value="roque">Плут</option>
+			<option value="sorcerer">Чародей</option>
+			<option value="warloc">Колдун</option>
+			<option value="wizard">Волшебник</option>
 		</select>
-		<a href id="character_race_about">Инфомация о расе</a>
+		<a href id="characterClassesAbout">Инфомация о классе</a>
+		<br/>Раса
+		<br/><select id="characterRace" name=characterRace>
+			<option disabled>Выбор расы </option>
+			<option value="dwarf">Дварф</option>
+			<option value="elf">Эльф</option>
+			<option value="halfling">Полурослик</option>
+			<option value="human">Человек</option>
+			<option value="dragonborn">Драконорожденный</option>
+			<option value="gnom">Гном</option>
+			<option value="half-Elf">Полуэльф</option>
+			<option value="half-orc">Полуорк</option>
+			<option value="tiefling">Тифлинг</option>
+		</select>
+		<a href id="characterRaceAbout">Инфомация о расе</a>
 		<br/>Вдохновение
 		<br/>Бонус Мастерства
 		<ul>Спасброски
@@ -56,6 +80,18 @@
 	<div style="float:left"> 
 		Предыстория
 		<br/>Мировозрение
+		<br/><select id="characterIdeology" name=characterIdeology>
+			<option disabled>Выбор мировозрения </option>
+			<option value="abiding-kind">законопослушно-добрый</option>
+			<option value="neutral-kind">нейтрально-добрый</option>
+			<option value="chaotically-kind">хаотично-добрый</option>
+			<option value="abiding-neutral">законопослушно-нейтральный</option>
+			<option value="neutral">нейтральный</option>
+			<option value="chaotically-neutral">хаотично-нейтральный</option>
+			<option value="abiding-wicked">законопослушно-злой</option>
+			<option value="neutral-wicked">нейтрально-злой</option>
+			<option value="chaotically-wicked">хаотично-злой</option>
+		</select>
 		<br/>Класс доспехов Инициатива Скорость
 		<br/>Текущие хиты Спасброски смерти
 		<br/>Временные хиты
@@ -66,6 +102,7 @@
 
 	<div style="float:left">
 		Имя Игрока
+		<br/><input id="characterPlayerName" name="characterPlayerName" value="{{character.plaeyrName}}" />
 		<br/>Опыт
 		<br/>Черты характера
 		<br/>Идеалы
@@ -79,31 +116,14 @@
 	</div>
 </form>
 <script>
-	$('#button_character_name').on('click', function() {
-		var character_name = $('#character_name').val();
-		var character_id = $('#character_id').val();
-		$.post('/create-character/name', {
-			name: character_name,
-			id: character_id
-		}, function(data){
-			alert(data);
-		})
-	});
 
-	$('#button_character_race_ok').on('click', function() {
-		var character_race = $('#character_race').val();
-		var character_id = $('#character_id').val();
-
-		$.post('/create-character/race', {
-			race: character_race,
-			id: character_id 
-		}, function(data){
-			alert(data);
-		})
+	$('#characterRaceAbout').on('change', function() {
+		var characterRace = $('#characterRace').val();
+		alert(characterRace);
 	});
 	
-	$('#character_race_about').on('change', function() {
-		var character_race = $('#character_race').val();
-		alert(character_race);
+	$('#characterClassesAbout').on('change', function() {
+		var characterClasses = $('#characterClasses').val();
+		alert(characterClasses);
 	});
 </script>
