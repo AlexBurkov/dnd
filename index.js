@@ -7,6 +7,7 @@ const bodyParser = require("body-parser")
 const main = require("./app/controllers/main")
 const game = require("./app/controllers/game")
 const character = require("./app/controllers/character")
+const character_book = require("./app/controllers/character_book");
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.get('/', main.home);
 app.get('/new-game', game.new);
 app.get('/create-character', character.create);
 app.get('/create-character-dicesForCharacteristics', character.dicesForCharacteristics);
+app.get('/create-character_book', character_book.create);
 
 console.log("Server started");
 app.listen(port);
