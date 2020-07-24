@@ -25,13 +25,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get('/', main.home);
-app.get('/new-game', game.new);
-app.get('/characters-new/', character.add);
-app.get('/characters/:id/edit', character.edit);
-app.get('/create-character', character.create);
-app.get('/create-character-dicesForCharacteristics', character.dicesForCharacteristics);
 
-app.post('/characters', character.create);
+app.get('/characters', character.index);
+app.get('/characters/create', character.add);
+app.post('/characters/create', character.create);
+app.get('/characters/view/:id', character.view);
+app.get('/characters/delete/:id', character.delete);
+app.get('/characters/dices-for-characteristics', character.dicesForCharacteristics);
+
+app.get('/game/campaign/:name/:id', game.location);
+app.get('/game/campaigns', game.campaigns);
+
 
 console.log("Server started");
 app.listen(port);

@@ -1,8 +1,8 @@
+const dice = require('../helpers/dice');
+const helperArray = require('../helpers/helper_array');
 let db = require('../../db').db;
 let characterTable = require('../models/character');
 
-const dice = require('../helpers/dice');
-const helperArray = require('../helpers/helper_array');
 
 exports.dicesForCharacteristics = function(request, response){
 	var result = [];
@@ -24,10 +24,10 @@ exports.add = function(request, response){
 };
 
 exports.create = function(request, response){
-	character={
+	var character = {
 		name: request.body.name,
 		race: request.body.race, 
-		classes: request.body.classes,
+		className: request.body.className,
 		playerName: request.body.playerName,
 		ideology: request.body.ideology
 	}
@@ -38,12 +38,22 @@ exports.create = function(request, response){
 	});
 };
 
-exports.edit = function(request, response){
-	var id = request.params.id;
-	response.render("character/create", {
-		character: {
-			name: "test",
-			race: "test"
-		}
+exports.index = function(request, response){
+	characterTable.select_all(function(err, rows){
+		response.render("character/index", { "characters": rows });
 	});
-};
+}
+
+exports.view = function(request, response){
+	var id = request.params.id;
+	characterTable.selectById(id, function(err, row){
+		response.render("character/view", {"character": row});
+	});
+}
+
+exports.delete = function(request, response){
+	var id = request.params.id;
+	characterTable.deleteById(id, function(err, row){
+		response.redirect("/characters");
+	});
+}
