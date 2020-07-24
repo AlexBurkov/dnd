@@ -1,5 +1,5 @@
 let db = require('../../db').db;
-let charactersTable = require('../models/character');
+let characterTable = require('../models/character');
 
 const dice = require('../helpers/dice');
 const helperArray = require('../helpers/helper_array');
