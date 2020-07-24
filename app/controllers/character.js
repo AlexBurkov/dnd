@@ -1,9 +1,9 @@
+let db = require('../../db').db;
+let charactersTable = require('../models/character');
+
 const dice = require('../helpers/dice');
 const helperArray = require('../helpers/helper_array');
 
-exports.create = function(request, response){
-	response.render("character/create");
-};
 exports.dicesForCharacteristics = function(request, response){
 	var result = [];
 	for (j = 0; j < 6; j++) {
@@ -17,4 +17,33 @@ exports.dicesForCharacteristics = function(request, response){
 		})
 	}
 	response.json(result);
+};
+
+exports.add = function(request, response){
+	response.render("character/create")
+};
+
+exports.create = function(request, response){
+	character={
+		name: request.body.name,
+		race: request.body.race, 
+		classes: request.body.classes,
+		playerName: request.body.playerName,
+		ideology: request.body.ideology
+	}
+	characterTable.insert(character, function(err) {
+		response.render("character/create", {
+			characterId: this.lastID
+		})
+	});
+};
+
+exports.edit = function(request, response){
+	var id = request.params.id;
+	response.render("character/create", {
+		character: {
+			name: "test",
+			race: "test"
+		}
+	});
 };
