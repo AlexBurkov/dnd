@@ -26,11 +26,12 @@ app.use(bodyParser.json());
 
 app.get('/', main.home);
 app.get('/new-game', game.new);
-app.get('/characters', characters.add);
+app.get('/characters-new/', characters.add);
 app.get('/characters/:id/edit', characters.edit);
+app.get('/create-character', character.create);
+app.get('/create-character-dicesForCharacteristics', character.dicesForCharacteristics);
 
-app.post('/characters/:id/edit', characters.edit);
 app.post('/characters', characters.create);
 
-console.log("Server started")
-app.listen(port)
+console.log("Server started");
+app.listen(port);
