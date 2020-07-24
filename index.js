@@ -25,18 +25,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get('/', main.home);
-app.get('/create-character', character.create);
-app.get('/create-character/dices-for-characteristics', character.dicesForCharacteristics);
+
 app.get('/characters', character.index);
-app.get('/characters/:id', character.view);
-app.get('/characters/:id/edit', character.edit);
-app.get('/characters/:id/delete', character.delete);
+app.get('/characters/create', character.add);
+app.post('/characters/create', character.create);
+app.get('/characters/view/:id', character.view);
+app.get('/characters/edit/:id', character.edit);
+app.get('/characters/delete/:id', character.delete);
+app.get('/characters/dices-for-characteristics', character.dicesForCharacteristics);
+
 app.get('/game/campaign/:name/:id', game.location);
 app.get('/game/campaigns', game.campaigns);
 
-app.post('/create-character/name', character.create_name);
-app.post('/create-character/race', character.create_race);
 
 console.log("Server started");
-
 app.listen(port);
