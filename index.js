@@ -8,7 +8,6 @@ const main = require("./app/controllers/main")
 const game = require("./app/controllers/game")
 const character = require("./app/controllers/character")
 
-
 const app = express();
 
 const port = 3000;
@@ -28,7 +27,7 @@ app.use(bodyParser.json());
 app.get('/', main.home);
 app.get('/create-character', character.create);
 app.get('/create-character/dices-for-characteristics', character.dicesForCharacteristics);
-app.get('/index', character.index);
+app.get('/characters', character.index);
 app.get('/characters/:id', character.view);
 app.get('/characters/:id/edit', character.edit);
 app.get('/characters/:id/delete', character.delete);

@@ -83,6 +83,6 @@ exports.edit = function(request, response){
 exports.delete = function(request, response){
 	var id = request.params.id;
 	character.deleteById(id, function(err, row){
-		response.redirect("/index");
+		response.redirect("/characters");
 	});
 }

@@ -4,16 +4,14 @@ exports.location = function(request, response){
 	var nameFile = "app/campaigns/" + request.params.name + ".json";
 	var id = request.params.id;
 	var campaign = JSON.parse(fs.readFileSync(nameFile, 'utf8'));
-	var ans;
+	var currentLocation;
 	campaign.forEach((location) => {
 		if(location.id == id){
-			ans = location;
-			//break;
-			// тут разобраться
+			currentLocation = location;
 		}
 	});
 	response.render("game/location", {
-		"location": ans,
+		"location": currentLocation,
 		"name": request.params.name
 	});
 };
