@@ -1,0 +1,10 @@
+<table border ="1">
+	<tr> <th>ID</th> <th>Name</th> <th>Race</th> </tr>
+	{{#each characters}}
+		<tr> <td>{{this.id}}</td> <td>{{this.name}}</td><td>{{this.race}}</td>
+			<td><a href="/characters/view/{{this.id}}">Посмотреть</a></td> 
+			<td><a href="/characters/edit/{{this.id}}">Редактировать</a></td>
+			<td><a href="/characters/delete/{{this.id}}">Удалить</a></td>
+		</tr>
+	{{/each}}
+</table>
