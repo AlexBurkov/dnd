@@ -26,12 +26,11 @@ app.use(bodyParser.json());
 
 app.get('/', main.home);
 app.get('/new-game', game.new);
-app.get('/characters-new/', character.add);
+app.get('/characters/create', character.add);
 app.get('/characters/:id/edit', character.edit);
-app.get('/create-character', character.create);
 app.get('/create-character-dicesForCharacteristics', character.dicesForCharacteristics);
 
-app.post('/characters', character.create);
+app.post('/characters/create', character.create);
 
 console.log("Server started");
 app.listen(port);

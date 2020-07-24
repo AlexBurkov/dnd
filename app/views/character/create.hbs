@@ -4,7 +4,7 @@
 
 	<div style="float:left"> 
 		Имя персонажа
-		<br/><input id="characterName" name="characterName" value="{{character.name}}" />
+		<br/><input id="name" name="name" value="{{character.name}}" />
 		<br/>Сила
 		<br/>Ловкость
 		<br/>Телосложение
@@ -16,7 +16,7 @@
 	</div>
 	<div style="float:left"> 
 		Класс и Уровень
-		<br/><select id="characterClasses" name=characterClasses>
+		<br/><select id="className" name=className>
 			<option disabled>Выбор класса </option>
 			<option value="barbarian">Варвар</option>
 			<option value="bard">Бард</option>
@@ -31,9 +31,9 @@
 			<option value="warloc">Колдун</option>
 			<option value="wizard">Волшебник</option>
 		</select>
-		<a href id="characterClassesAbout">Инфомация о классе</a>
+		<a href id="classNameAbout">Инфомация о классе</a>
 		<br/>Раса
-		<br/><select id="characterRace" name=characterRace>
+		<br/><select id="race" name=race>
 			<option disabled>Выбор расы </option>
 			<option value="dwarf">Дварф</option>
 			<option value="elf">Эльф</option>
@@ -45,7 +45,7 @@
 			<option value="half-orc">Полуорк</option>
 			<option value="tiefling">Тифлинг</option>
 		</select>
-		<a href id="characterRaceAbout">Инфомация о расе</a>
+		<a href id="raceAbout">Инфомация о расе</a>
 		<br/>Вдохновение
 		<br/>Бонус Мастерства
 		<ul>Спасброски
@@ -80,7 +80,7 @@
 	<div style="float:left"> 
 		Предыстория
 		<br/>Мировозрение
-		<br/><select id="characterIdeology" name=characterIdeology>
+		<br/><select id="ideology" name=ideology>
 			<option disabled>Выбор мировозрения </option>
 			<option value="abiding-kind">законопослушно-добрый</option>
 			<option value="neutral-kind">нейтрально-добрый</option>
@@ -102,7 +102,7 @@
 
 	<div style="float:left">
 		Имя Игрока
-		<br/><input id="characterPlayerName" name="characterPlayerName" value="{{character.plaeyrName}}" />
+		<br/><input id="playerName" name="playerName" value="{{character.plaeyrName}}" />
 		<br/>Опыт
 		<br/>Черты характера
 		<br/>Идеалы
@@ -117,13 +117,13 @@
 </form>
 <script>
 
-	$('#characterRaceAbout').on('change', function() {
-		var characterRace = $('#characterRace').val();
-		alert(characterRace);
+	$('#raceAbout').on('change', function() {
+		var race = $('#race').val();
+		alert(race);
 	});
 	
-	$('#characterClassesAbout').on('change', function() {
-		var characterClasses = $('#characterClasses').val();
-		alert(characterClasses);
+	$('#classNameAbout').on('change', function() {
+		var className = $('#className').val();
+		alert(className);
 	});
 </script>

@@ -27,7 +27,7 @@ exports.create = function(request, response){
 	character={
 		name: request.body.name,
 		race: request.body.race, 
-		classes: request.body.classes,
+		className: request.body.className,
 		playerName: request.body.playerName,
 		ideology: request.body.ideology
 	}
