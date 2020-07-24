@@ -24,7 +24,7 @@ exports.add = function(request, response){
 };
 
 exports.create = function(request, response){
-	character={
+	var character = {
 		name: request.body.name,
 		race: request.body.race, 
 		classes: request.body.classes,
@@ -39,21 +39,21 @@ exports.create = function(request, response){
 };
 
 exports.index = function(request, response){
-	character.select_all(function(err, rows){
+	characterTable.select_all(function(err, rows){
 		response.render("character/index", { "characters": rows });
 	});
 }
 
 exports.view = function(request, response){
 	var id = request.params.id;
-	character.selectById(id, function(err, row){
+	characterTable.selectById(id, function(err, row){
 		response.render("character/view", {"character": row});
 	});
 }
 
 exports.delete = function(request, response){
 	var id = request.params.id;
-	character.deleteById(id, function(err, row){
+	characterTable.deleteById(id, function(err, row){
 		response.redirect("/characters");
 	});
 }

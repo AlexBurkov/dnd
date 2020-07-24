@@ -30,7 +30,6 @@ app.get('/characters', character.index);
 app.get('/characters/create', character.add);
 app.post('/characters/create', character.create);
 app.get('/characters/view/:id', character.view);
-app.get('/characters/edit/:id', character.edit);
 app.get('/characters/delete/:id', character.delete);
 app.get('/characters/dices-for-characteristics', character.dicesForCharacteristics);
 
