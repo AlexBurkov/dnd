@@ -8,7 +8,6 @@ const main = require("./app/controllers/main")
 const game = require("./app/controllers/game")
 const character = require("./app/controllers/character")
 
-
 const app = express();
 
 const port = 3000;
