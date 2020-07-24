@@ -2,9 +2,9 @@
 	<tr> <th>ID</th> <th>Name</th> <th>Race</th> </tr>
 	{{#each characters}}
 		<tr> <td>{{this.id}}</td> <td>{{this.name}}</td><td>{{this.race}}</td>
-			<td><a href="/character-look/{{this.id}}">Посмотреть</a></td> 
-			<td><a href="/character-edit">Редактировать</a></td>
-			<td><a href="/character-delete/{{this.id}}">Удалить</a></td>
+			<td><a href="/characters/{{this.id}}">Посмотреть</a></td> 
+			<td><a href="/characters/{{this.id}}/edit">Редактировать</a></td>
+			<td><a href="/characters/{{this.id}}/delete">Удалить</a></td>
 		</tr>
 	{{/each}}
 </table>

@@ -69,17 +69,17 @@ exports.index = function(request, response){
 	});
 }
 
-exports.look = function(request, response){
+exports.view = function(request, response){
 	var id = request.params.id;
 	character.selectById(id, function(err, row){
-		response.render("character/look", {"character": row});
+		response.render("character/view", {"character": row});
 	});
 }
-//--------------------------------------------------------------------------------------------------------------------------
+
 exports.edit = function(request, response){
 	console.log("edit");
 }
-//--------------------------------------------------------------------------------------------------------------------------
+
 exports.delete = function(request, response){
 	var id = request.params.id;
 	character.deleteById(id, function(err, row){

@@ -1,11 +1,11 @@
 const fs = require("fs");
-exports.newCampany = function(request, response){
-	var nameFile = "app/campanies/" + request.params.name + ".json";
-	
-	var campany = JSON.parse(fs.readFileSync(nameFile, 'utf8'));
+
+exports.location = function(request, response){
+	var nameFile = "app/campaigns/" + request.params.name + ".json";
 	var id = request.params.id;
+	var campaign = JSON.parse(fs.readFileSync(nameFile, 'utf8'));
 	var ans;
-	campany.forEach((location) => {
+	campaign.forEach((location) => {
 		if(location.id == id){
 			ans = location;
 			//break;
@@ -18,6 +18,6 @@ exports.newCampany = function(request, response){
 	});
 };
 
-exports.showCampanies = function(request, response){
-	response.render("game/campanies");
+exports.campaigns = function(request, response){
+	response.render("game/campaigns");
 }
