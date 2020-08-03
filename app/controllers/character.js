@@ -19,20 +19,21 @@ exports.dicesForCharacteristics = function(request, response){
 	response.json(result);
 };
 
-exports.add = function(request, response){
-	response.render("character/create");
+exports.addMain = function(request, response){
+	response.render("character/create/main");
 };
 
-exports.create = function(request, response){
+exports.createMain = function(request, response){
 	var character = {
 		name: request.body.name,
 		race: request.body.race, 
 		className: request.body.className,
 		playerName: request.body.playerName,
-		ideology: request.body.ideology
+		ideology: request.body.ideology,
+		traits: request.body.traits
 	}
 	characterTable.insert(character, function(err) {
-		response.render("character/create", {
+		response.render("character/create/main", {
 			characterId: this.lastID
 		})
 	});
@@ -62,5 +63,41 @@ exports.edit = function(request, response){
 	var id = request.params.id;
 	characterTable.selectById(id, function(err, row){
 		response.render("character/create", {"character": row});
+	});
+};
+
+exports.update = function(request, response){
+	var id = request.params.id;
+	var character = {
+		name: request.body.name,
+		race: request.body.race, 
+		className: request.body.className,
+		playerName: request.body.playerName,
+		ideology: request.body.ideology,
+		traits: request.body.traits
+	}
+	characterTable.updateById(id, character, function(err) {
+		if(err){
+			console.log(err);
+		}
+		response.redirect("/characters")
+	});
+};
+
+exports.addAbout = function(request, response){
+	var id = request.params.id;
+	characterTable.selectById(id, function(err, row){
+		response.render("character/create/about", {"character": row});
+	});
+};
+
+exports.createAbout = function(request, response){
+	var id = request.params.id;
+	var character = {
+		playerName: request.body.playerName,
+		ideology: request.body.ideology
+	}
+	characterTable.updateById(id, character, function(err) {
+		response.redirect("/characters/")
 	});
 };

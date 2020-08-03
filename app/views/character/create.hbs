@@ -11,6 +11,7 @@
 		<br/>Интеллект
 		<br/>Мудрость
 		<br/>Харизма
+		<br/><input type=submit value="Распределить характеристики"/>
 		<br/>Пассивная внимательность
 		<br/>Прочие владения и языки
 	</div>
@@ -18,32 +19,32 @@
 		Класс и Уровень
 		<br/><select id="className" name="className">
 			<option disabled>Выбор класса </option>
-			<option value="barbarian">Варвар</option>
-			<option value="bard">Бард</option>
-			<option value="cleric">Жрец</option>
-			<option value="druid">Друид</option>
-			<option value="fighter">Воин</option>
-			<option value="monk">Монах</option>
-			<option value="paladin">Паладин</option>
-			<option value="ranger">Следопыт</option>
-			<option value="roque">Плут</option>
-			<option value="sorcerer">Чародей</option>
-			<option value="warloc">Колдун</option>
-			<option value="wizard">Волшебник</option>
+			{{>option column=character.className value="barbarian" title="Варвар"}}
+			{{>option column=character.className value="bard" title="Бард"}}
+			{{>option column=character.className value="cleric" title="Жрец"}}
+			{{>option column=character.className value="druid" title="Друид"}}
+			{{>option column=character.className value="fighter" title="Воин"}}
+			{{>option column=character.className value="monk" title="Монах"}}
+			{{>option column=character.className value="paladin" title="Паладин"}}
+			{{>option column=character.className value="ranger" title="Следопыт"}}
+			{{>option column=character.className value="roque" title="Плут"}}
+			{{>option column=character.className value="sorcerer" title="Чародей"}}
+			{{>option column=character.className value="warloc" title="Колдун"}}
+			{{>option column=character.className value="wizard" title="Волшебник"}}
 		</select>
 		<a href id="classNameAbout">Инфомация о классе</a>
 		<br/>Раса
 		<br/><select id="race" name="race">
 			<option disabled>Выбор расы </option>
-			<option value="dwarf">Дварф</option>
-			<option value="elf">Эльф</option>
-			<option value="halfling">Полурослик</option>
-			<option value="human">Человек</option>
-			<option value="dragonborn">Драконорожденный</option>
-			<option value="gnom">Гном</option>
-			<option value="half-Elf">Полуэльф</option>
-			<option value="half-orc">Полуорк</option>
-			<option value="tiefling">Тифлинг</option>
+			{{>option column=character.race value="dwarf" title="Дварф"}}
+			{{>option column=character.race value="elf" title="Эльф"}}
+			{{>option column=character.race value="halfling" title="Полурослик"}}
+			{{>option column=character.race value="human" title="Человек"}}
+			{{>option column=character.race value="dragonborn" title="Драконорожденный"}}
+			{{>option column=character.race value="gnom" title="Гном"}}
+			{{>option column=character.race value="half-Elf" title="Полуэльф"}}
+			{{>option column=character.race value="half-orc" title="Полуорк"}}
+			{{>option column=character.race value="tiefling" title="Тифлинг"}}
 		</select>
 		<a href id="raceAbout">Инфомация о расе</a>
 		<br/>Вдохновение
@@ -82,15 +83,15 @@
 		<br/>Мировозрение
 		<br/><select id="ideology" name="ideology">
 			<option disabled>Выбор мировозрения </option>
-			<option value="abiding-kind">законопослушно-добрый</option>
-			<option value="neutral-kind">нейтрально-добрый</option>
-			<option value="chaotically-kind">хаотично-добрый</option>
-			<option value="abiding-neutral">законопослушно-нейтральный</option>
-			<option value="neutral">нейтральный</option>
-			<option value="chaotically-neutral">хаотично-нейтральный</option>
-			<option value="abiding-wicked">законопослушно-злой</option>
-			<option value="neutral-wicked">нейтрально-злой</option>
-			<option value="chaotically-wicked">хаотично-злой</option>
+			{{>option column=character.ideology value="abiding-kind" title="законопослушно-добрый"}}
+			{{>option column=character.ideology value="neutral-kind" title="нейтрально-добрый"}}
+			{{>option column=character.ideology value="chaotically-kind" title="хаотично-добрый"}}
+			{{>option column=character.ideology value="abiding-neutral" title="законопослушно-нейтральный"}}
+			{{>option column=character.ideology value="neutral" title="нейтральный"}}
+			{{>option column=character.ideology value="chaotically-neutral" title="хаотично-нейтральный"}}
+			{{>option column=character.ideology value="abiding-wicked" title="законопослушно-злой"}}
+			{{>option column=character.ideology value="neutral-wicked" title="нейтрально-злой"}}
+			{{>option column=character.ideology value="chaotically-wicked" title="хаотично-злой"}}
 		</select>
 		<br/>Класс доспехов Инициатива Скорость
 		<br/>Текущие хиты Спасброски смерти
@@ -102,9 +103,10 @@
 
 	<div style="float:left">
 		Имя Игрока
-		<br/><input id="playerName" name="playerName" value="{{character.plaeyrName}}" />
+		<br/><input id="playerName" name="playerName" value="{{character.playerName}}" />
 		<br/>Опыт
 		<br/>Черты характера
+		<br/><textarea id="traits" name="traits">{{character.traits}}</textarea>
 		<br/>Идеалы
 		<br/>Привязвнности
 		<br/>Слабости

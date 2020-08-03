@@ -1,0 +1,41 @@
+<form method="POST">
+
+	<input type="hidden" value="{{characterId}}" id="characterId" />
+	<div style="float:left"> 
+		Имя персонажа
+		<br/><input id="name" name="name" value="{{character.name}}" />
+		<br/>Класс и Уровень
+		<br/><select id="className" name="className">
+			<option disabled>Выбор класса </option>
+			{{>option column=character.className value="barbarian" title="Варвар"}}
+			{{>option column=character.className value="bard" title="Бард"}}
+			{{>option column=character.className value="cleric" title="Жрец"}}
+			{{>option column=character.className value="druid" title="Друид"}}
+			{{>option column=character.className value="fighter" title="Воин"}}
+			{{>option column=character.className value="monk" title="Монах"}}
+			{{>option column=character.className value="paladin" title="Паладин"}}
+			{{>option column=character.className value="ranger" title="Следопыт"}}
+			{{>option column=character.className value="roque" title="Плут"}}
+			{{>option column=character.className value="sorcerer" title="Чародей"}}
+			{{>option column=character.className value="warloc" title="Колдун"}}
+			{{>option column=character.className value="wizard" title="Волшебник"}}
+		</select>
+		<a href id="classNameAbout">Инфомация о классе</a>
+		<br/>Раса
+		<br/><select id="race" name="race">
+			<option disabled>Выбор расы </option>
+			{{>option column=character.race value="dwarf" title="Дварф"}}
+			{{>option column=character.race value="elf" title="Эльф"}}
+			{{>option column=character.race value="halfling" title="Полурослик"}}
+			{{>option column=character.race value="human" title="Человек"}}
+			{{>option column=character.race value="dragonborn" title="Драконорожденный"}}
+			{{>option column=character.race value="gnom" title="Гном"}}
+			{{>option column=character.race value="half-Elf" title="Полуэльф"}}
+			{{>option column=character.race value="half-orc" title="Полуорк"}}
+			{{>option column=character.race value="tiefling" title="Тифлинг"}}
+		</select>
+		<a href id="raceAbout">Инфомация о расе</a>	
+		<br>
+		<br><input type=submit value="Сохранить персонажа"/>
+	</div>
+</form>
