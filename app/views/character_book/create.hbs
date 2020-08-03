@@ -1,23 +1,138 @@
-сумма кубиков: {{character.cube}}</br>
-ваша ловкость: {{character.agility}}</br>
-ваша сила: {{character.power}}</br>
-ваше обаяние: {{character.charm}}</br>
-<table border="1">
-	<tr>
-		<td>Ловкость</td> <td>Сила</td> <td>Обаяние</td>
-	</tr>
-	<tr>
-		<td colspan="2" rowspan="3">Заклинания</td> <td>Деньги</td>
-	</tr>
-	<tr><td>Фляга</td></tr>
-	<tr><td>Меч</td></tr>
-	<tr>
-		<td colspan="3">В заплечном мешке</td>
-	</tr>
-	<tr>
-		<td colspan="3">Информация</td>
-	</tr>
-	<tr>
-		<td colspan="3">Удача</td>
-	</tr>
-</table>
+<form method="POST">
+	Введите имя <br/>
+	<input id="name" name="name" />
+	<input id="roll" type="button" value="Бросить кубики"/>
+	<input id="rollLuck" type="button" value="Бросить кубики на удачу"/>
+
+
+	<div id="characteristics" style="display: none;">
+		сумма кубиков: <span id="cubics"></span></br>
+		<input name="cubics" type="hidden" id="cubicsInput" />
+		ваша ловкость: <span id="agility"></span></br>
+		<input name="agility" type="hidden" id="agilityInput" />
+		ваша сила: <span id="power"></span></br>
+		<input name="power" type="hidden" id="powerInput" />
+		ваше обаяние: <span id="charm"></span></br>
+		<input name="charm" type="hidden" id="charmInput" />
+	</div>
+
+	<div id="luck" style="display: none;">
+		первый кубик: <span id="firstCubic"></span></br>
+		<input name="firstCubic" type="hidden" id="firstCubicInput" />
+		второй кубик: <span id="secondCubic"></span></br>
+		<input name="secondCubic" type="hidden" id="secondCubicInput" />
+	</div>
+
+	<tr>Выберите 10 заклинаний</tr><br/>
+
+	<table id="table" border="1" style="float: left;">
+		<thead>
+			<tr><th>Выбранные заклинания</th></tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+
+	<table border="1">
+		<tr><th>Заклинания</th></tr>
+		<tr class="1"><td>1</td></tr>
+		<tr class="1"><td>2</td></tr>
+		<tr class="1"><td>2</td></tr>
+		<tr class="1"><td>3</td></tr>
+		<tr class="1"><td>4</td></tr>
+		<tr class="1"><td>5</td></tr>
+		<tr class="1"><td>6</td></tr>
+		<tr class="1"><td>7</td></tr>
+		<tr class="1"><td>8</td></tr>
+	</table>
+
+	<table id="tbackpack" border="1" style="float: left;">
+		<thead>
+			<tr><th>Твои вещи</th></tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+
+	<table id="tstuff" border="1">
+		<thead>
+			<tr><th>вещи</th></tr>
+		</thead>
+		<tbody>
+			<tr class="2"><td>1</td></tr>
+			<tr class="2"><td>2</td></tr>
+			<tr class="2"><td>3</td></tr>
+			<tr class="2"><td>4</td></tr>
+			<tr class="2"><td>5</td></tr>
+			<tr class="2"><td>6</td></tr>
+			<tr class="2"><td>7</td></tr>
+			<tr class="2"><td>8</td></tr>
+		</tbody>	
+	</table>
+
+	<input id="save" type="submit" value="Сохранить персонажа"/><br/>
+
+</form>
+
+<script>
+	function eventForTwo() {
+		var e = $(this).clone();
+		e.on("click", eventForOne);
+		$("#tbackpack").find("tbody").append(e);
+		$(this).remove();
+	}
+
+	function eventForOne() {
+		var e = $(this).clone();
+		e.on("click", eventForTwo);
+		$("#tstuff").find("tbody").append(e);
+		$(this).remove();
+	}
+
+	$(".2").on("click", eventForTwo);
+
+	$(".1").on("click", function(){
+		if($('#table').find("tbody").children().length >= 10) {
+			alert("Нельзя больше 10 заклинаний");
+		} else {
+			var e = $(this).clone();
+			e.on("click", function(){
+				$(this).remove();
+			});
+			$('#table').find("tbody").append(e);
+		}
+	});
+
+	$("#rollLuck").on("click", function(){
+		$.get("/characters-book/dices-for-luck", {}, function(data){
+			$("#firstCubic").text(data.first);
+			$("#secondCubic").text(data.second);
+			$("#firstCubicInput").val(data.first);
+			$("#secondCubicInput").val(data.second);
+			$("#luck").css("display", "block");
+		})
+	})	
+
+
+	$("#roll").on("click", function(){
+		$.get("/characters-book/dices-for-characteristics", {}, function(data){
+			$("#cubics").text(data.cube);
+			$("#agility").text(data.agility);
+			$("#power").text(data.power);
+			$("#charm").text(data.charm);
+			$("#cubicsInput").val(data.cube);
+			$("#agilityInput").val(data.agility);
+			$("#powerInput").val(data.power);
+			$("#charmInput").val(data.charm);
+			$("#characteristics").css("display", "block");
+		})
+	})
+</script>
+
+
+
+
+
+
+
+

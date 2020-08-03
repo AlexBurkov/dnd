@@ -33,7 +33,14 @@ app.post('/characters/create', character.create);
 app.get('/characters/view/:id', character.view);
 app.get('/characters/delete/:id', character.delete);
 app.get('/characters/dices-for-characteristics', character.dicesForCharacteristics);
-app.get('/create-character-book', character_book.create);
+
+app.get('/characters-book/dices-for-characteristics', character_book.dicesForCharacteristics);
+app.get('/characters-book/dices-for-luck', character_book.dicesForLuck);
+app.get('/create-character-book', character_book.add);
+app.post('/create-character-book', character_book.create);
+app.get('/characters-book/view/:id', character_book.view);
+
+app.get('/test', character.test);
 
 app.get('/game/campaign/:name/:id', game.location);
 app.get('/game/campaigns', game.campaigns);

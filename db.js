@@ -15,4 +15,12 @@ db.run('CREATE TABLE IF NOT EXISTS `characters`(`id` INTEGER PRIMARY KEY AUTOINC
 	}
 });
 
+db.run('CREATE TABLE IF NOT EXISTS `charactersBook`(`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` VARCHAR(50), `agility` INTEGER, `power` INTEGER, `charm` INTEGER, `money` INTEGER, `flask` VARCHAR(50), `sword` VARCHAR(50), `luck1` VARCHAR(50), `luck2` VARCHAR(50), `luck3` VARCHAR(50), `luck4` VARCHAR(50), `luck5` VARCHAR(50), `luck6` VARCHAR(50))', [], (err) => {
+	if (err) {
+		console.log(err.message);
+    } else {
+		console.log("Created_characters_Book");
+	}
+});
+
 exports.db = db;

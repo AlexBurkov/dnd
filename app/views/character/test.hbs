@@ -1,0 +1,29 @@
+<div id="test"> Привет </div>
+<button class="test_button"> Кнопка 1</button>
+<button class="test_button"> Кнопка 2</button>
+
+<table id="table" border="1">
+	<tr>
+		<td class="td"> first </td>
+	</tr>
+	<tr>
+		<td class="td"> second </td>
+	</tr>
+	<tr>
+		<td class="td"> third </td>
+	</tr>
+</table>
+
+<script>  
+$(".test_button").on("click", function(){
+	$('#test').text("пока");
+	$('#table').append("<tr><td>second</td></tr>");
+	alert($(this).text());
+});
+
+
+$(".td").on("click", function(){
+	$(this).parent().remove();
+});
+
+</script>
