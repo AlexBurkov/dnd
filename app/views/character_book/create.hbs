@@ -1,0 +1,133 @@
+<form method="POST">
+	Введите имя <br/>
+	<input id="name" name="name" />
+	<button id="rollForCharacateristics">Бросить кубики</button>
+	<button id="rollForLuck">Бросить кубики на удачу</button>
+
+
+	<div id="characteristics" style="display: none;">
+		Сумма кубиков: <span id="cubics"></span></br>
+		Ваша ловкость: <span id="agility"></span></br>
+		Ваша сила: <span id="power"></span></br>
+		Ваше обаяние: <span id="charm"></span></br>
+	</div>
+
+	<div id="luck" style="display: none;">
+		Первый кубик: <span id="firstCubic"></span></br>
+		Второй кубик: <span id="secondCubic"></span></br>
+	</div>
+
+	<tr>Выберите 10 заклинаний</tr><br/>
+
+	<table id="table" border="1" style="float: left;">
+		<thead>
+			<tr><th>Выбранные заклинания</th></tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+
+	<table border="1">
+		<tr><th>Заклинания</th></tr>
+		<tr class="spell"><td>Левитация</td></tr>
+		<tr class="spell"><td>Огонь</td></tr>
+		<tr class="spell"><td>Иллюзия</td></tr>
+		<tr class="spell"><td>Сила</td></tr>
+		<tr class="spell"><td>Слабость</td></tr>
+		<tr class="spell"><td>Копия</td></tr>
+		<tr class="spell"><td>Исцеление</td></tr>
+		<tr class="spell"><td>Плавание</td></tr>
+	</table>
+
+												<table id="tableForBackpack" border="1" style="float: left;">
+													<thead>
+														<tr><th>Твои вещи</th></tr>
+													</thead>
+													<tbody>
+													</tbody>
+												</table>
+
+												<table id="tableForStuff" border="1">
+													<thead>
+														<tr><th>Вещи</th></tr>
+													</thead>
+													<tbody>
+														<tr class="thing"><td>1</td></tr>
+														<tr class="thing"><td>2</td></tr>
+														<tr class="thing"><td>3</td></tr>
+														<tr class="thing"><td>4</td></tr>
+														<tr class="thing"><td>5</td></tr>
+														<tr class="thing"><td>6</td></tr>
+														<tr class="thing"><td>7</td></tr>
+														<tr class="thing"><td>8</td></tr>
+													</tbody>	
+												</table>
+
+	<button id="sendCharacter">Сохранить персонажа</button><br/>
+
+</form>
+
+<script>
+												function takeAThing() {
+													var e = $(this).clone();
+													e.on("click", throwOutTheItem);
+													$("#tableForBackpack").find("tbody").append(e);
+													$(this).remove();
+												}
+
+												function throwOutTheItem() {
+													var e = $(this).clone();
+													e.on("click", takeAThing);
+													$("#tableForStuff").find("tbody").append(e);
+													$(this).remove();
+												}
+
+												$(".thing").on("click", takeAThing);
+
+	$(".spell").on("click", function(){
+		if($('#table').find("tbody").children().length >= 10) {
+			alert("Нельзя больше 10 заклинаний");
+		} else {
+			var e = $(this).clone();
+			e.on("click", function(){
+				$(this).remove();
+			});
+			$('#table').find("tbody").append(e);
+		}
+	});
+
+	$("#rollForLuck").on("click", function(event){
+		event.preventDefault();
+		$.get("/characters-book/dices-for-luck", {}, function(data){
+			$("#firstCubic").text(data.first);
+			$("#secondCubic").text(data.second);
+			$("#luck").css("display", "block");
+		})
+	})	
+
+
+	$("#rollForCharacateristics").on("click", function(event){
+		event.preventDefault();
+		$.get("/characters-book/dices-for-characteristics", {}, function(data){
+			$("#cubics").text(data.cube);
+			$("#agility").text(data.agility);
+			$("#power").text(data.power);
+			$("#charm").text(data.charm);
+			$("#characteristics").css("display", "block");
+		})
+	});
+
+	$("#sendCharacter").on("click", function(event){
+		event.preventDefault();
+		$.post("/create-character-book", {
+			"name": $("#name").val(),
+			"agility": $("#agility").text(), 
+			"power": $("#power").text(),
+			"charm": $("#charm").text()
+		}, function(data){
+			alert("save");
+		})
+	});
+
+
+</script>
