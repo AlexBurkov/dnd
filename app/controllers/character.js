@@ -57,7 +57,3 @@ exports.delete = function(request, response){
 		response.redirect("/characters");
 	});
 }
-
-exports.test = function(request, response){
-	response.render("character/test");
-}

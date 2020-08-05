@@ -7,7 +7,7 @@ const bodyParser = require("body-parser")
 const main = require("./app/controllers/main")
 const game = require("./app/controllers/game")
 const character = require("./app/controllers/character")
-const character_book = require("./app/controllers/character_book");
+const characterBook = require("./app/controllers/character_book");
 
 const app = express();
 
@@ -34,14 +34,11 @@ app.get('/characters/view/:id', character.view);
 app.get('/characters/delete/:id', character.delete);
 app.get('/characters/dices-for-characteristics', character.dicesForCharacteristics);
 
-app.get('/characters-book/dices-for-characteristics', character_book.dicesForCharacteristics);
-app.get('/characters-book/dices-for-luck', character_book.dicesForLuck);
-app.get('/create-character-book', character_book.add);
-app.post('/create-character-book', character_book.create);
-app.get('/characters-book/view/:id', character_book.view);
-
-app.get('/test', character.test);
-
+app.get('/characters-book/dices-for-characteristics', characterBook.dicesForCharacteristics);
+app.get('/characters-book/dices-for-luck', characterBook.dicesForLuck);
+app.get('/create-character-book', characterBook.add);
+app.post('/create-character-book', characterBook.create);
+app.get('/characters-book/view/:id', characterBook.view);
 app.get('/game/campaign/:name/:id', game.location);
 app.get('/game/campaigns', game.campaigns);
 

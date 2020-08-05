@@ -10,11 +10,11 @@ exports.add = function(request, response){
 exports.create = function(request, response){
 	var character = {
 		name: request.body.name,
-		agility: request.body.agilityInput, 
-		power: request.body.powerInput,
-		charm: request.body.charmInput,
-		money: 0,
-		flask: 0,
+		agility: request.body.agility, 
+		power: request.body.power,
+		charm: request.body.charm,
+		money: 15,
+		flask: 2,
 		sword: 0,
 		luck1: 0,
 		luck2: 0,
@@ -23,6 +23,7 @@ exports.create = function(request, response){
 		luck5: 0,
 		luck6: 0
 	}
+	console.log(character);
 	characterTable.insert(character, function(err) {
 		if(err){
 			console.log(err);
@@ -54,7 +55,7 @@ exports.dicesForLuck = function(request, response){
 exports.view = function(request, response){
 	var id = request.params.id;
 	characterTable.selectById(id, function(err, row){
-		console.log(row);
+		//console.log(row);
 		response.render("character_book/view", {"character": row});
 	});
 }
